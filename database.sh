@@ -16,15 +16,15 @@ mkdir -p /var/log/expense.logs
 
 Log_folder="/var/log/expense.logs"
 Log_file=$(echo "$0" | cut -d"." f1)
-Timestamp=$(echo "+%d-%m-%Y-%H-%M-%S")
+Timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 Log_file_name="$Log_folder/$Log_file-$Timestamp.log"
 
 Validate(){
     if [ $1 -ne 0 ]; then
-        echo "$2 ...$R Failure $R"
+        echo "$2 ...$R Failure $N"
         exit 1
     else
-        echo "$2 ...$G Success $G"
+        echo "$2 ...$G Success $N"
     fi
 }
 
@@ -51,12 +51,12 @@ Validate $? "Starting Mysql"
 
 mysql -h database-server.nithinlearning.site -u root -pExpenseApp@1 -e 'show databases;' &>>$Log_file_name
 
-if[ $? -ne 0 ] then 
-echo "Mysql root user setup was not successfull">>$Log_file_name
-mysql_secure_installation --set-root-pass ExpenseApp@1
-Validate $? "Mysql root user setup was ...."
+if [ $? -ne 0 ]; then 
+    echo "Mysql root user setup was not successfull">>$Log_file_name
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    Validate $? "Mysql root user setup was ...."
 else
-echo "MySQL Root password already setup.....$Y Skipping $Y"
+    echo "MySQL Root password already setup.....$Y Skipping $Y"
 fi
 
 
