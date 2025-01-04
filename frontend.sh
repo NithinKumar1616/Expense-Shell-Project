@@ -11,9 +11,11 @@ G="\[e32m"
 Y="\[e33m"
 N="\[e0m"
 
-Log_folder=/var/log/expenselogs
-Log_file=$(cat $0 | cut -d "." f1)
-Timestamp=$(echo "+%d-%m-%Y-%H-%M-%S")
+mkdir -p /var/log/expense.logs
+
+Log_folder="/var/log/expense.logs"
+Log_file=$(echo $0 | cut -d "." -f1)
+Timestamp=$(date +%d-%m-%Y-%H-%M-%S)
 Log_file_name="$Log_folder/$Log_file-$Timestamp.log"
 
 Validate(){
@@ -26,7 +28,7 @@ Validate(){
 }
 
 Check_root(){
-    if[ UserID -ne 0 ]then
+    if [ UserID -ne 0 ]; then
     echo " $R Error: You should have root access to run this script $R"
     exit 1
     fi
