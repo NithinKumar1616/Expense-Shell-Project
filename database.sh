@@ -27,9 +27,9 @@ Validate(){
 }
 
 Check_root(){
-    if [ UserID -ne 0] then
-    echo -e " $R Error: You should have root access to run this script $R"
-    exit 1
+    if [ UserID -ne 0]; then
+        echo -e " $R Error: You should have root access to run this script $R"
+        exit 1
     fi
 }
 
