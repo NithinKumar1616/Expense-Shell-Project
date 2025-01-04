@@ -10,7 +10,7 @@ G="\[e32m"
 Y="\[e33m"
 N="\[e0m"
 
-Log_folder=$(/var/log/expenselogs)
+Log_folder=/var/log/expenselogs
 Log_file=$(cat $0 | cut -d "." f1)
 Timestamp=$(echo "+%d-%m-%Y-%H-%M-%S")
 Log_file_name="$Log_folder/$Log_file-$Timestamp.log"
@@ -18,6 +18,7 @@ Log_file_name="$Log_folder/$Log_file-$Timestamp.log"
 Validate(){
     if [ $1 -ne 0 ]then
     echo -e "$2 .....$R Failure $R"
+    exit 1
     else
     echo "$2 .....$G Success $G"
     fi
