@@ -12,7 +12,7 @@ N="\[e0m"
 
 mkdir -p /var/log/expense.logs
 
-Log_folder="/var/log/expenselogs"
+Log_folder="/var/log/expense.logs"
 Log_file=$(echo $0 | cut -d "." -f1)
 Timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 Log_file_name="$Log_folder/$Log_file-$Timestamp.log"
