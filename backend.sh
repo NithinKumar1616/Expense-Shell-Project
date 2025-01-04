@@ -16,11 +16,11 @@ Timestamp=$(echo "+%d-%m-%Y-%H-%M-%S")
 Log_file_name="$Log_folder/$Log_file-$Timestamp.log"
 
 Validate(){
-    if [ $1 -ne 0 ]then
-    echo -e "$2 .....$R Failure $R"
-    exit 1
+    if [ $1 -ne 0 ]; then
+        echo "$2 ...$R Failure $R"
+        exit 1
     else
-    echo "$2 .....$G Success $G"
+        echo "$2 ...$G Success $G"
     fi
 }
 
